@@ -1,0 +1,2026 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Luis Alfonso Velásquez Flores — El Grillo (Niño Mártir)</title>
+  <meta name="description" content="Memoria digital interactiva sobre Luis Alfonso Velásquez Flores (El Grillo – Niño Mártir). Contexto histórico, vida, gesta heroica, legado, análisis de imágenes, testimonios, propuesta innovadora y quiz." />
+
+  <!-- Chart.js (para la sección de resultados/encuesta) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+  <style>
+    :root{
+      --blue:#1f3c88;
+      --blue2:#2f5fa3;
+      --paper:#f5efe4;
+      --paper2:#efe5d6;
+      --ink:#131722;
+      --muted:#5f6b7a;
+      --white:#ffffff;
+      --shadow: 0 10px 25px rgba(0,0,0,.14);
+      --shadow2: 0 18px 45px rgba(0,0,0,.18);
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1120px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
+      color:var(--ink);
+      background: var(--paper);
+      overflow-x:hidden;
+    }
+
+    /* Fondo papel (texturizado “fake”, cámbialo por tu textura real si quieres) */
+    body:before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background:
+        radial-gradient(1200px 800px at 20% 10%, rgba(0,0,0,.04), transparent 60%),
+        radial-gradient(900px 700px at 90% 20%, rgba(0,0,0,.03), transparent 55%),
+        radial-gradient(1000px 900px at 50% 90%, rgba(0,0,0,.035), transparent 60%),
+        linear-gradient(0deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+      pointer-events:none;
+      z-index:-1;
+    }
+
+    a{color:inherit}
+    .container{max-width:var(--max); margin:0 auto; padding:0 18px;}
+    .section{padding:78px 0}
+    .section-title{
+      font-size: 28px;
+      letter-spacing: .6px;
+      margin:0 0 18px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .section-title:before{
+      content:"";
+      width:10px;height:10px;border-radius:50%;
+      background:var(--blue);
+      box-shadow: 0 0 0 6px rgba(31,60,136,.13);
+    }
+    .muted{color:var(--muted)}
+    .card{
+      background:var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border:1px solid rgba(0,0,0,.06);
+    }
+    .card.pad{padding:18px}
+    .soft{background: rgba(255,255,255,.70)}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      background: rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.18);
+      color: rgba(255,255,255,.92);
+      font-size: 13px;
+    }
+
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:50;
+      background: rgba(31,60,136,.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,.10);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 14px 0;
+      gap: 14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      color: #fff;
+      font-weight: 800;
+      letter-spacing: .8px;
+      text-decoration:none;
+      white-space:nowrap;
+    }
+    .brand-badge{
+      width:34px; height:34px;
+      border-radius: 10px;
+      background: rgba(255,255,255,.16);
+      border:1px solid rgba(255,255,255,.20);
+      display:grid; place-items:center;
+      font-weight:900;
+    }
+    .nav-links{
+      display:flex; gap:12px; flex-wrap:wrap;
+      align-items:center;
+      justify-content:flex-end;
+    }
+    .nav-links a{
+      font-size: 13px;
+      text-decoration:none;
+      padding:8px 10px;
+      border-radius: 10px;
+      color: rgba(255,255,255,.92);
+      border:1px solid transparent;
+      transition:.2s ease;
+    }
+    .nav-links a:hover{border-color:rgba(255,255,255,.20); background:rgba(255,255,255,.08)}
+    .nav-links a.active{background:rgba(255,255,255,.16); border-color:rgba(255,255,255,.20)}
+    .nav-cta{
+      display:flex; gap:10px; align-items:center;
+    }
+    .btn{
+      border:0; cursor:pointer;
+      border-radius: 14px;
+      padding: 11px 14px;
+      font-weight: 750;
+      letter-spacing:.2px;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      text-decoration:none;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .btn:active{transform:translateY(1px)}
+    .btn.primary{
+      background: #132b66;
+      color:#fff;
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow: 0 12px 28px rgba(0,0,0,.18);
+    }
+    .btn.secondary{
+      background: rgba(255,255,255,.12);
+      color:#fff;
+      border:1px solid rgba(255,255,255,.20);
+    }
+    .btn.gold{
+      background: linear-gradient(135deg, #a97a2a, #6f5220);
+      color:#fff;
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow: 0 12px 28px rgba(0,0,0,.18);
+    }
+
+    /* Mobile menu */
+    .burger{display:none}
+    @media (max-width: 980px){
+      .nav-links{display:none}
+      .burger{display:inline-flex}
+    }
+    .drawer{
+      position:fixed; inset:0;
+      background: rgba(0,0,0,.55);
+      opacity:0; pointer-events:none;
+      transition:.2s ease;
+      z-index:60;
+    }
+    .drawer.open{opacity:1; pointer-events:auto}
+    .drawer-panel{
+      position:absolute; top:0; right:0; height:100%; width:min(92vw, 360px);
+      background: rgba(31,60,136,.98);
+      transform: translateX(120%);
+      transition:.25s ease;
+      padding: 18px;
+      border-left:1px solid rgba(255,255,255,.15);
+    }
+    .drawer.open .drawer-panel{transform: translateX(0)}
+    .drawer a{
+      display:block;
+      text-decoration:none;
+      color:#fff;
+      padding: 12px 12px;
+      border-radius: 12px;
+      border:1px solid rgba(255,255,255,.14);
+      margin-bottom:10px;
+      background: rgba(255,255,255,.08);
+    }
+
+    /* HERO */
+    .hero{
+      position:relative;
+      padding: 56px 0 64px;
+    }
+    .hero-wrap{
+      border-radius: var(--radius2);
+      overflow:hidden;
+      box-shadow: var(--shadow2);
+      border:1px solid rgba(0,0,0,.08);
+      background: var(--paper2);
+      position:relative;
+    }
+    .hero-bg{
+      position:absolute; inset:0;
+      background:
+        linear-gradient(120deg, rgba(31,60,136,.78), rgba(47,95,163,.55)),
+        radial-gradient(1200px 600px at 20% 30%, rgba(255,255,255,.18), transparent 55%),
+        radial-gradient(1000px 520px at 80% 20%, rgba(255,255,255,.10), transparent 58%);
+      z-index:1;
+    }
+    .hero-grid{
+      position:relative; z-index:2;
+      display:grid;
+      grid-template-columns: 420px 1fr;
+      gap: 26px;
+      padding: 26px;
+      align-items:center;
+    }
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns: 1fr}
+    }
+
+    .portrait{
+      border-radius: 22px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.24);
+      box-shadow: 0 18px 45px rgba(0,0,0,.22);
+      background: rgba(255,255,255,.10);
+      position:relative;
+    }
+    .portrait img{
+      width:100%; height:420px; object-fit:cover; display:block;
+      transform: scale(1.04);
+      filter: saturate(1.06) contrast(1.03);
+    }
+    .portrait:after{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(400px 400px at 40% 30%, rgba(255,255,255,.20), transparent 60%);
+      pointer-events:none;
+    }
+
+    .hero-text h1{
+      margin:0 0 8px;
+      color:#fff;
+      font-size: 38px;
+      line-height: 1.08;
+      letter-spacing: .6px;
+    }
+    .hero-text .subtitle{
+      margin: 0 0 14px;
+      color: rgba(255,255,255,.92);
+      font-size: 18px;
+      line-height: 1.35;
+    }
+    .hero-actions{
+      display:flex; gap:12px; flex-wrap:wrap;
+      margin-top: 16px;
+    }
+    .typing{
+      border-right: 2px solid rgba(255,255,255,.9);
+      padding-right:4px;
+      white-space:nowrap;
+      display:inline-block;
+      max-width:100%;
+    }
+
+    /* Reveal animations */
+    .reveal{opacity:0; transform: translateY(18px); transition: .65s ease}
+    .reveal.show{opacity:1; transform: translateY(0)}
+    .slide-left{opacity:0; transform: translateX(-18px); transition: .65s ease}
+    .slide-left.show{opacity:1; transform: translateX(0)}
+
+    /* Blue sections */
+    .blue-band{
+      background: var(--blue);
+      color:#fff;
+      border-top:1px solid rgba(255,255,255,.10);
+      border-bottom:1px solid rgba(255,255,255,.10);
+    }
+    .blue2-band{background: var(--blue2); color:#fff}
+
+    /* Timeline */
+    .timeline{
+      margin-top: 18px;
+      position:relative;
+    }
+    .timeline-line{
+      height: 4px;
+      background: rgba(255,255,255,.30);
+      border-radius:999px;
+      position:relative;
+      overflow:hidden;
+    }
+    .timeline-line:before{
+      content:"";
+      position:absolute; inset:0;
+      background: rgba(255,255,255,.90);
+      transform: scaleX(0);
+      transform-origin:left;
+      transition: .9s ease;
+    }
+    .timeline.show .timeline-line:before{transform: scaleX(1)}
+    .timeline-points{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+    @media (max-width: 860px){
+      .timeline-points{grid-template-columns: 1fr 1fr}
+    }
+    .tpoint{
+      padding: 14px;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.08);
+      cursor:pointer;
+      transition: transform .15s ease, background .15s ease, box-shadow .15s ease;
+    }
+    .tpoint:hover{
+      transform: translateY(-2px);
+      background: rgba(255,255,255,.12);
+      box-shadow: 0 14px 28px rgba(0,0,0,.18);
+    }
+    .tpoint .year{font-weight:900; letter-spacing:.4px; font-size: 18px}
+    .tpoint .label{opacity:.92; margin-top:6px; font-size: 13px}
+
+    /* Vida */
+    .vida-grid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 18px;
+      align-items:stretch;
+    }
+    @media (max-width: 920px){
+      .vida-grid{grid-template-columns: 1fr}
+    }
+    .accordion-item{
+      border:1px solid rgba(0,0,0,.07);
+      border-radius: 14px;
+      overflow:hidden;
+      margin-bottom:10px;
+    }
+    .accordion-btn{
+      width:100%;
+      background:#fff;
+      border:0;
+      text-align:left;
+      padding: 14px 14px;
+      font-weight: 850;
+      cursor:pointer;
+      display:flex; justify-content:space-between; align-items:center;
+    }
+    .accordion-content{
+      max-height:0; overflow:hidden;
+      transition: max-height .25s ease;
+      background: rgba(0,0,0,.02);
+      padding: 0 14px;
+    }
+    .accordion-content p{margin: 12px 0 14px; color:var(--muted); line-height:1.55}
+    .acc-open .accordion-content{max-height: 320px}
+    .parallax{
+      border-radius: var(--radius);
+      overflow:hidden;
+      border:1px solid rgba(0,0,0,.06);
+      background: linear-gradient(120deg, rgba(31,60,136,.12), rgba(47,95,163,.06));
+      position:relative;
+      min-height: 280px;
+    }
+    .parallax img,
+.parallax video{
+  width:100%;
+  height: 360px;
+  object-fit:cover;
+  display:block;
+  transform: translateY(0);
+  transition: transform .08s linear;
+  filter: saturate(1.03) contrast(1.02);
+  opacity:.95;
+}
+
+    .parallax .cap{
+      position:absolute; inset:auto 14px 14px 14px;
+      background: rgba(255,255,255,.86);
+      border:1px solid rgba(0,0,0,.06);
+      border-radius: 14px;
+      padding: 10px 12px;
+      box-shadow: var(--shadow);
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* Gesta heroica cards */
+    .grid-4{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+    @media (max-width: 980px){
+      .grid-4{grid-template-columns: 1fr 1fr}
+    }
+    @media (max-width: 560px){
+      .grid-4{grid-template-columns: 1fr}
+    }
+    .hcard{
+      padding: 16px;
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.08);
+      cursor:pointer;
+      transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
+      min-height: 160px;
+      display:flex; flex-direction:column; justify-content:space-between;
+    }
+    .hcard:hover{
+      transform: translateY(-3px);
+      background: rgba(255,255,255,.12);
+      box-shadow: 0 16px 30px rgba(0,0,0,.22);
+    }
+    .hcard .ico{font-size: 24px}
+    .hcard .title{font-weight:900; letter-spacing:.3px; margin-top:10px}
+    .hcard .mini{opacity:.9; font-size: 13px; margin-top:6px; line-height:1.35}
+    .hcard .link{
+      margin-top:12px;
+      display:inline-flex; gap:8px; align-items:center;
+      font-weight:800;
+      font-size: 13px;
+      opacity:.92;
+    }
+
+    /* Legado */
+    .legado-grid{
+      display:grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 18px;
+      align-items:stretch;
+    }
+    @media (max-width: 920px){ .legado-grid{grid-template-columns:1fr} }
+    .scan{
+      border-radius: var(--radius);
+      overflow:hidden;
+      border:1px solid rgba(0,0,0,.08);
+      background: rgba(0,0,0,.03);
+      position:relative;
+      min-height: 260px;
+      cursor:pointer;
+    }
+    .scan img{
+      width:100%; height: 320px; object-fit:cover; display:block;
+      transform: scale(1.02);
+      transition: transform .18s ease;
+      filter: sepia(.18) contrast(1.02);
+    }
+    .scan video{
+  width:100%;
+  height:320px;
+  object-fit:cover;
+  display:block;
+  border-radius:18px;
+}
+
+    .scan:hover img{transform: scale(1.06)}
+    .callout{
+      background: rgba(31,60,136,.08);
+      border: 1px solid rgba(31,60,136,.18);
+      padding: 14px;
+      border-radius: 16px;
+      margin-top: 12px;
+    }
+    .callout strong{color:var(--blue)}
+    .kv{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .kv .item{
+      padding: 12px;
+      border-radius: 14px;
+      background: rgba(0,0,0,.02);
+      border:1px solid rgba(0,0,0,.05);
+    }
+
+    /* Imágenes analizadas */
+    .img-grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+    @media (max-width: 980px){ .img-grid{grid-template-columns: 1fr 1fr} }
+    @media (max-width: 560px){ .img-grid{grid-template-columns: 1fr} }
+    .thumb{
+      border-radius: 18px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+      position:relative;
+      cursor:pointer;
+      min-height: 200px;
+    }
+    .thumb img,
+.thumb video{
+      width:100%; height: 240px; object-fit:cover; display:block;
+      filter: saturate(1.02) contrast(1.02);
+      transition: transform .18s ease, filter .18s ease;
+    }
+    .thumb:hover img,
+.thumb:hover video{transform: scale(1.05); filter: brightness(.72) saturate(1.05)}
+    .thumb .overlay{
+      position:absolute; inset:0;
+      display:flex; align-items:flex-end; justify-content:space-between;
+      padding: 14px;
+      background: linear-gradient(0deg, rgba(0,0,0,.55), transparent 60%);
+      opacity:0;
+      transition: opacity .18s ease;
+      color:#fff;
+      gap:10px;
+    }
+    .thumb:hover .overlay{opacity:1}
+    .thumb .overlay .t{font-weight:900}
+    .thumb .overlay .b{
+      background: rgba(255,255,255,.16);
+      border:1px solid rgba(255,255,255,.18);
+      border-radius: 12px;
+      padding: 9px 10px;
+      font-weight:850;
+      font-size: 13px;
+      white-space:nowrap;
+    }
+
+    /* Testimonios */
+    .test-grid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items:start;
+    }
+    @media (max-width: 920px){ .test-grid{grid-template-columns:1fr} }
+    .perg{
+      background:
+        radial-gradient(900px 400px at 30% 20%, rgba(255,255,255,.35), transparent 60%),
+        linear-gradient(0deg, rgba(0,0,0,.03), rgba(0,0,0,.00));
+      border:1px solid rgba(0,0,0,.06);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+    .quote{
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--ink);
+      margin: 0 0 12px;
+    }
+    .qmeta{font-size: 13px; color: var(--muted)}
+    .qcontrols{display:flex; gap:10px; margin-top:14px; flex-wrap:wrap}
+    table{
+      width:100%;
+      border-collapse: collapse;
+      overflow:hidden;
+      border-radius: var(--radius);
+      border:1px solid rgba(0,0,0,.06);
+      background:#fff;
+      box-shadow: var(--shadow);
+    }
+    th, td{
+      padding: 12px 12px;
+      border-bottom: 1px solid rgba(0,0,0,.06);
+      text-align:left;
+      font-size: 13px;
+      vertical-align:top;
+    }
+    th{background: rgba(31,60,136,.07); color: var(--blue); font-weight: 900}
+    tr:last-child td{border-bottom:0}
+
+    /* Innovación */
+    .innov-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      align-items:stretch;
+      margin-top: 18px;
+    }
+    @media (max-width: 920px){ .innov-grid{grid-template-columns:1fr} }
+    .stat-row{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 700px){ .stat-row{grid-template-columns:1fr} }
+    .stat{
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.10);
+      padding: 12px;
+    }
+    .stat .n{font-size: 22px; font-weight: 950}
+    .stat .l{font-size: 13px; opacity:.92}
+
+    /* Quiz */
+    .quiz{
+      display:grid;
+      gap: 12px;
+    }
+    .progress{
+      height: 10px;
+      background: rgba(31,60,136,.08);
+      border-radius: 999px;
+      overflow:hidden;
+      border:1px solid rgba(31,60,136,.16);
+    }
+    .progress > div{
+      height:100%;
+      width:0%;
+      background: linear-gradient(90deg, var(--blue), var(--blue2));
+      transition: width .25s ease;
+    }
+    .qtitle{font-weight: 950; letter-spacing:.2px; margin:0}
+    .options{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    @media (max-width: 700px){ .options{grid-template-columns:1fr} }
+    .opt{
+      padding: 12px;
+      border-radius: 16px;
+      border:1px solid rgba(0,0,0,.08);
+      background:#fff;
+      cursor:pointer;
+      transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+      font-weight: 800;
+      color: var(--ink);
+    }
+    .opt:hover{transform: translateY(-2px); box-shadow: var(--shadow)}
+    .opt[disabled]{cursor:not-allowed; opacity:.9}
+    .opt.correct{border-color: rgba(0,150,70,.55); background: rgba(0,150,70,.08)}
+    .opt.wrong{border-color: rgba(220,40,40,.55); background: rgba(220,40,40,.08)}
+    .quiz-actions{display:flex; gap:10px; flex-wrap:wrap}
+
+    /* Footer */
+    footer{
+      background: #0f1f4f;
+      color: rgba(255,255,255,.90);
+      padding: 40px 0;
+      border-top: 1px solid rgba(255,255,255,.12);
+    }
+    .foot-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 16px;
+      align-items:start;
+    }
+    @media (max-width: 920px){ .foot-grid{grid-template-columns:1fr} }
+    .foot-links a{
+      display:inline-block;
+      margin: 6px 10px 0 0;
+      padding: 8px 10px;
+      border-radius: 12px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      text-decoration:none;
+      font-size: 13px;
+      color: rgba(255,255,255,.92);
+    }
+
+    /* Modal global */
+    .modal{
+      position:fixed; inset:0; z-index:80;
+      background: rgba(0,0,0,.60);
+      display:none;
+      align-items:center; justify-content:center;
+      padding: 18px;
+    }
+    .modal.open{display:flex}
+    .modal-card{
+      width: min(980px, 96vw);
+      max-height: min(86vh, 860px);
+      overflow:auto;
+      border-radius: 22px;
+      background: #fff;
+      border:1px solid rgba(0,0,0,.10);
+      box-shadow: 0 30px 80px rgba(0,0,0,.35);
+    }
+    .modal-head{
+      position:sticky; top:0;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0,0,0,.07);
+      padding: 14px 16px;
+      display:flex; justify-content:space-between; align-items:center; gap:12px;
+    }
+    .modal-title{margin:0; font-size: 16px; font-weight: 950}
+    .icon-btn{
+      border:1px solid rgba(0,0,0,.10);
+      background:#fff;
+      border-radius: 12px;
+      padding: 10px 12px;
+      cursor:pointer;
+      font-weight: 900;
+    }
+    .modal-body{padding: 16px}
+    .modal-body p{line-height:1.6; color:var(--muted)}
+    .modal-media img{
+      width:100%;
+      border-radius: 18px;
+      border:1px solid rgba(0,0,0,.08);
+      margin-top: 10px;
+    }
+
+    /* Back to top */
+    .to-top{
+      position:fixed; right:18px; bottom:18px;
+      opacity:0; pointer-events:none;
+      transform: translateY(10px);
+      transition:.2s ease;
+      z-index:70;
+    }
+    .to-top.show{
+      opacity:1; pointer-events:auto;
+      transform: translateY(0);
+    }
+
+    /* focus a11y */
+    :focus-visible{outline: 3px solid rgba(47,95,163,.55); outline-offset: 2px}
+  </style>
+</head>
+
+<body>
+  <!-- Drawer (mobile menu) -->
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer-panel" role="dialog" aria-label="Menú">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <div style="color:#fff;font-weight:900;letter-spacing:.6px">Navegación</div>
+        <button class="icon-btn" id="drawerClose" aria-label="Cerrar menú">✕</button>
+      </div>
+      <div id="drawerLinks"></div>
+      <div style="margin-top:14px">
+        <button class="btn gold" style="width:100%" id="drawerTour">Iniciar Experiencia</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="#inicio" aria-label="Ir al inicio">
+          <span class="brand-badge">LV</span>
+          <span>LEGADO VIVO</span>
+        </a>
+
+        <nav class="nav-links" id="navLinks" aria-label="Secciones"></nav>
+
+        <div class="nav-cta">
+          <button class="btn secondary burger" id="burger" aria-label="Abrir menú">☰</button>
+          <button class="btn secondary" id="btnTourTop">Iniciar Experiencia</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="inicio" class="hero">
+    <div class="container">
+      <div class="hero-wrap">
+        <div class="hero-bg"></div>
+
+        <div class="hero-grid">
+          <div class="portrait slide-left" data-reveal>
+            <!-- IMPORTANTE:
+              Reemplaza assets/mural.jpeg por tu imagen real (la ilustración estilo mural)
+              Recomendación: assets/mural.jpeg(420x420 o más, buena calidad)
+            -->
+            <img id="heroImg" src="assets/mural.jpeg" alt="Ilustración estilo mural de Luis Alfonso Velásquez Flores" />
+          </div>
+
+          <div class="hero-text">
+            <div class="pill">🎨 Papel histórico + overlay institucional • Sombras suaves modernas</div>
+            <h1 style="margin-top:12px">
+              <span id="typingTarget" class="typing"></span>
+            </h1>
+            <p class="subtitle reveal" data-reveal>
+              <strong id="heroAlias">“El Grillo – Niño Mártir”</strong>
+              <span class="muted" style="display:block; margin-top:6px; color: rgba(255,255,255,.86)">
+                Una experiencia web profesional e interactiva para explorar contexto, vida, gesta, legado, evidencias visuales y aprendizajes.
+              </span>
+            </p>
+
+            <div class="hero-actions reveal" data-reveal>
+              <a class="btn primary" href="#contexto" id="btnExplorar">Explorar Legado</a>
+              <button class="btn gold" id="btnTour">Iniciar Experiencia Interactiva</button>
+              <a class="btn secondary" href="#quiz">Ir al Quiz</a>
+            </div>
+
+            <p class="muted reveal" data-reveal style="margin:14px 0 0; color: rgba(255,255,255,.78); font-size: 13px">
+              Animaciones: entrada izquierda, typing en el título, fade-in + zoom suave, modales con contenido basado en tus documentos.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn primary to-top" id="toTop" aria-label="Volver arriba">↑ Arriba</button>
+  </main>
+
+  <!-- CONTEXTO HISTÓRICO -->
+  <section id="contexto" class="section blue-band">
+    <div class="container">
+      <h2 class="section-title" style="color:#fff">
+        Contexto histórico
+      </h2>
+      <p style="margin:0; color: rgba(255,255,255,.88); line-height:1.6">
+        Línea de tiempo horizontal animada. Cada punto abre un modal con descripción y fuente.
+      </p>
+
+      <div class="timeline reveal" data-reveal id="timeline">
+        <div class="timeline-line"></div>
+        <div class="timeline-points" id="timelinePoints"></div>
+      </div>
+    </div>
+  </section>
+
+ <!-- VIDA -->
+<section id="vida" class="section">
+  <div class="container">
+    <h2 class="section-title">Vida</h2>
+
+    <p class="muted" style="margin:0 0 18px; line-height:1.6">
+      Card blanco flotante con contenido estructurado + video histórico con efecto parallax suave.
+    </p>
+
+    <div class="vida-grid">
+
+      <!-- ACORDEÓN -->
+      <div class="card pad reveal" data-reveal>
+        <div id="vidaAccordion"></div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px">
+          <button class="btn primary" id="btnBioCompleta">
+            Leer biografía completa
+          </button>
+
+          <button class="btn secondary" id="btnVidaHighlight">
+            Resaltar valores
+          </button>
+        </div>
+      </div>
+
+      <!-- VIDEO -->
+      <div class="parallax reveal" data-reveal>
+
+        <video id="vidaVideo" autoplay muted loop playsinline>
+          <source src="assets/vida.mp4" type="video/mp4">
+          Tu navegador no soporta video.
+        </video>
+
+        <div class="cap" id="vidaCap">
+          Video contextual histórico.
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+  <!-- GESTA HEROICA -->
+  <section id="gesta" class="section blue-band">
+    <div class="container">
+      <h2 class="section-title" style="color:#fff">Gesta heroica</h2>
+      <p style="margin:0; color: rgba(255,255,255,.88); line-height:1.6">
+        Cuatro cards animadas con hover (azul institucional + sombra elevada). Click abre detalle en modal.
+      </p>
+
+      <div class="grid-4 reveal" data-reveal id="gestaGrid"></div>
+    </div>
+  </section>
+
+  <!-- LEGADO Y VIGENCIA -->
+  <section id="legado" class="section">
+    <div class="container">
+      <h2 class="section-title">Legado y vigencia</h2>
+      <p class="muted" style="margin:0 0 18px; line-height:1.6">
+        Fondo papel histórico. Documento (Decreto 1182) con animación/zoom + resumen y destacado “Declarado Patrimonio Nacional”.
+      </p>
+
+      <div class="legado-grid">
+        <div class="scan reveal" data-reveal id="decretoCard" role="button" tabindex="0" aria-label="Abrir decreto completo">
+          <!-- Reemplaza assets/decreto.jpg por tu escaneo o imagen del decreto -->
+          <video id="decretoVideo" autoplay muted loop playsinline controls>
+            <source src="assets/decreto.mp4" type="video/mp4">
+          </video>
+                  </div>
+
+        <div class="card pad reveal" data-reveal>
+          <h3 style="margin:0 0 8px; font-size: 18px; font-weight: 950; color: var(--blue)">Decreto 1182</h3>
+          <p class="muted" style="margin:0; line-height:1.6" id="decretoResumen"></p>
+
+          <div class="callout">
+            <strong>Declarado Patrimonio Nacional</strong>
+            <div class="muted" style="margin-top:6px" id="decretoCallout"></div>
+          </div>
+
+          <div class="kv" id="decretoPuntos"></div>
+
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px">
+            <button class="btn primary" id="btnVerDecreto">Ver decreto completo</button>
+            <button class="btn secondary" id="btnIrFuentes">Ver fuentes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMÁGENES ANALIZADAS -->
+  <section id="imagenes" class="section blue-band">
+    <div class="container">
+      <h2 class="section-title" style="color:#fff">Imágenes analizadas</h2>
+      <p style="margin:0; color: rgba(255,255,255,.88); line-height:1.6">
+        Grid 3 columnas. Hover oscurece + botón “Ver análisis”. Click abre ficha obligatoria: Contexto, Contenido simbólico, Relación con legado.
+      </p>
+
+      <div class="img-grid reveal" data-reveal id="imagenesGrid"></div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIOS Y ENTREVISTA -->
+  <section id="testimonios" class="section">
+    <div class="container">
+      <h2 class="section-title">Testimonios y entrevista</h2>
+      <p class="muted" style="margin:0 0 18px; line-height:1.6">
+        Tarjeta estilo pergamino con fragmentos destacados + tabla de aprendizajes.
+      </p>
+
+      <div class="test-grid">
+        <div class="perg reveal" data-reveal>
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap">
+            <div>
+              <div style="font-weight:950; color: var(--blue); letter-spacing:.3px">Fragmentos destacados</div>
+              <div class="muted" style="font-size:13px; margin-top:4px">Rotación manual / automática (opcional)</div>
+            </div>
+            <button class="btn primary" id="btnEntrevista">Ver entrevista completa</button>
+          </div>
+
+          <div style="margin-top:14px">
+            <p class="quote" id="quoteText"></p>
+            <div class="qmeta" id="quoteMeta"></div>
+            <div class="qcontrols">
+              <button class="btn secondary" id="qPrev">← Anterior</button>
+              <button class="btn secondary" id="qNext">Siguiente →</button>
+              <button class="btn secondary" id="qAuto">Auto: OFF</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal" data-reveal>
+          <table aria-label="Tabla de aprendizajes">
+            <thead>
+              <tr>
+                <th>Insight</th>
+                <th>Evidencia</th>
+                <th>Valor actual</th>
+              </tr>
+            </thead>
+            <tbody id="aprendizajesBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROPUESTA INNOVADORA -->
+  <section id="innovacion" class="section blue2-band">
+    <div class="container">
+      <h2 class="section-title" style="color:#fff">Propuesta innovadora</h2>
+      <p style="margin:0; color: rgba(255,255,255,.88); line-height:1.6">
+        “Memoria Digital Interactiva” con descripción, resultados de encuesta y gráfico animado.
+      </p>
+
+      <div class="innov-grid">
+        <div class="card pad soft reveal" data-reveal>
+          <h3 style="margin:0 0 10px; font-size: 18px; font-weight: 950; color: var(--blue)">Memoria Digital Interactiva</h3>
+          <p class="muted" style="margin:0; line-height:1.6" id="innovDesc"></p>
+
+          <div class="stat-row" id="innovStats"></div>
+
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px">
+            <button class="btn primary" id="btnParticipar">Participar / Encuesta</button>
+            <button class="btn secondary" id="btnVerResultados">Ver resultados completos</button>
+          </div>
+        </div>
+
+        <div class="card pad reveal" data-reveal>
+          <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; align-items:center">
+            <div>
+              <div style="font-weight:950; color: var(--blue); letter-spacing:.2px">Resultados (encuesta)</div>
+              <div class="muted" style="font-size:13px">El gráfico se anima al entrar en pantalla</div>
+            </div>
+            <div class="pill" style="color:#fff;background:rgba(31,60,136,.85)">Chart.js</div>
+          </div>
+          <div style="margin-top:12px">
+            <canvas id="chartEncuesta" height="220"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="quiz" class="section">
+    <div class="container">
+      <h2 class="section-title">Quiz interactivo</h2>
+      <p class="muted" style="margin:0 0 18px; line-height:1.6">
+        Barra de progreso animada + feedback inmediato + resultado final + guardado en localStorage.
+      </p>
+
+      <div class="card pad quiz reveal" data-reveal>
+        <div class="progress" aria-label="Progreso del quiz"><div id="quizProg"></div></div>
+        <div class="muted" style="font-size:13px" id="quizStep"></div>
+        <h3 class="qtitle" id="quizQ"></h3>
+        <div class="options" id="quizOpts"></div>
+        <div class="muted" id="quizFeedback" style="min-height:20px"></div>
+
+        <div class="quiz-actions">
+          <button class="btn secondary" id="quizPrev">← Atrás</button>
+          <button class="btn primary" id="quizNext">Siguiente →</button>
+          <button class="btn secondary" id="quizRetry">Reintentar</button>
+        </div>
+
+        <div class="callout" id="quizResult" style="display:none"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUENTES -->
+  <section id="fuentes" class="section">
+    <div class="container">
+      <h2 class="section-title">Fuentes</h2>
+      <p class="muted" style="margin:0 0 12px; line-height:1.6">
+        Enlaces a documentos, decreto, evidencias y recursos (PDF, doc, etc.).
+      </p>
+
+      <div class="card pad reveal" data-reveal>
+        <div id="fuentesList"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="foot-grid">
+        <div>
+          <div style="font-weight:950; letter-spacing:.6px; color:#fff">LEGADO VIVO</div>
+          <p style="margin:10px 0 0; line-height:1.6; color: rgba(255,255,255,.84)">
+            Créditos • Carrera • Año • Fuentes • Decreto 1182. Diseño con paleta institucional y experiencia interactiva.
+          </p>
+          <div class="foot-links" style="margin-top:10px" id="footerLinks"></div>
+        </div>
+
+        <div>
+          <div style="font-weight:900; color:#fff">Accesibilidad</div>
+          <p style="margin:10px 0 0; line-height:1.6; color: rgba(255,255,255,.84)">
+            Contraste alto, navegación por teclado, foco visible, alt text en imágenes y modales cerrables con ESC.
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal global -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-label="Ventana emergente">
+      <div class="modal-head">
+        <h4 class="modal-title" id="modalTitle"></h4>
+        <button class="icon-btn" id="modalClose" aria-label="Cerrar">✕</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script>
+    /*********************************************************
+     * 1) CONTENIDO CENTRAL (edítalo aquí)
+     *    - Reemplaza textos por los de tus documentos (doc/pdf).
+     *    - Reemplaza rutas de imágenes por tus assets reales.
+     *********************************************************/
+    const content = {
+      hero: {
+        nombre: "LUIS ALFONSO VELÁSQUEZ FLORES",
+        alias: "“El Grillo – Niño Mártir”",
+        heroImg: "assets/mural.jpeg" // usa tu mural/ilustración
+      },
+
+      timeline: [
+        { year: "1969", title: "Nacimiento", desc: "Descripción del hecho (basada en tu documento).", source: "Documento/Referencia" },
+        { year: "1977", title: "Primeras acciones", desc: "Descripción del hecho (basada en tu documento).", source: "Documento/Referencia" },
+        { year: "1978", title: "MEP", desc: "Descripción del hecho (basada en tu documento).", source: "Documento/Referencia" },
+        { year: "1979", title: "Incidente", desc: "Descripción del hecho (basada en tu documento).", source: "Documento/Referencia" },
+      ],
+
+      vida: {
+  cap: "Video contextual histórico.",
+
+  sections: [
+    { key:"nombre", label:"Nombre completo", text:"Luis Alfonso Velásquez Flores." },
+    { key:"contexto", label:"Contexto", text:"Contexto social/político/educativo según tu investigación." },
+    { key:"acciones", label:"Acciones", text:"Principales acciones y participación según el documento." },
+    { key:"valores", label:"Valores", text:"Valores representados: dignidad, compromiso, memoria." },
+    { key:"vigencia", label:"Vigencia", text:"Relevancia actual y preservación del legado." },
+  ],
+
+  bioCompleta: `
+    <p><strong>Biografía completa:</strong> pega aquí el texto real desde tu documento.</p>
+  `
+},
+
+      gesta: [
+        {
+          id:"oratoria",
+          icon:"📢",
+          title:"Oratoria",
+          mini:"Participación y expresión pública (resumen corto).",
+          detail: `
+            <p><strong>Oratoria:</strong> detalle basado en el documento histórico.</p>
+            <p>Incluye: contexto, evidencia, y relación con la línea de tiempo.</p>
+          `,
+          relatedYear:"1978"
+        },
+        {
+          id:"mensajeria",
+          icon:"✉",
+          title:"Mensajería",
+          mini:"Comunicación y coordinación (resumen corto).",
+          detail: `
+            <p><strong>Mensajería:</strong> detalle y rol en la organización (según documento).</p>
+          `,
+          relatedYear:"1977"
+        },
+        {
+          id:"organizacion",
+          icon:"🎓",
+          title:"Organización estudiantil",
+          mini:"Acciones en el entorno estudiantil (resumen corto).",
+          detail: `
+            <p><strong>Organización estudiantil:</strong> explica acciones, estructura, impacto.</p>
+          `,
+          relatedYear:"1978"
+        },
+        {
+          id:"inteligencia",
+          icon:"👁",
+          title:"Inteligencia de campo",
+          mini:"Observación, apoyo y estrategia (resumen corto).",
+          detail: `
+            <p><strong>Inteligencia de campo:</strong> detalle de funciones y riesgos.</p>
+          `,
+          relatedYear:"1979"
+        },
+      ],
+
+      legado: {
+        decretoImg: "assets/decreto.mp4",
+        resumen: "Resumen del Decreto 1182: sintetiza el contenido en 3–5 líneas.",
+        callout: "Explica el significado del reconocimiento y por qué importa para la memoria histórica.",
+        puntos: [
+          "Punto clave 1 (rápido).",
+          "Punto clave 2 (rápido).",
+          "Punto clave 3 (rápido).",
+        ],
+        decretoCompletoHtml: `
+          <p><strong>Decreto 1182 (visor):</strong> aquí puedes incrustar PDF (si lo subes como archivo público) o mostrar imagen escaneada.</p>
+          <div class="modal-media">
+            <video src="assets/decreto.mp4" controls style="width:100%;border-radius:18px"></video>
+          </div>
+        `
+      },
+
+      imagenes: [
+  {
+    id:"img1",
+    thumb:"assets/img1.mp4",
+    full:"assets/img1.mp4",
+    title:"Imagen 1",
+    contexto:"Contexto de la imagen.",
+    simbolico:"Contenido simbólico.",
+    relacion:"Relación con el legado."
+  },
+  {
+    id:"img2",
+    thumb:"assets/img2.jpeg",
+    full:"assets/img2.jpeg",
+    title:"Imagen 2",
+    contexto:"Contexto.",
+    simbolico:"Simbolismo.",
+    relacion:"Relación."
+  },
+  {
+    id:"img3",
+    thumb:"assets/img3.mp4",
+    full:"assets/img3.mp4",
+    title:"Imagen 3",
+    contexto:"Contexto.",
+    simbolico:"Simbolismo.",
+    relacion:"Relación."
+  }
+],
+
+      testimonios: [
+        { text:"“Cita o fragmento destacado #1 (pegar desde entrevista/testimonio).”", by:"Fuente / Persona / Documento", year:"Año" },
+        { text:"“Cita o fragmento destacado #2.”", by:"Fuente / Persona / Documento", year:"Año" },
+        { text:"“Cita o fragmento destacado #3.”", by:"Fuente / Persona / Documento", year:"Año" },
+      ],
+
+      aprendizajes: [
+        { insight:"Aprendizaje 1", evidencia:"Cita / referencia", valor:"Aplicación actual / reflexión" },
+        { insight:"Aprendizaje 2", evidencia:"Cita / referencia", valor:"Aplicación actual / reflexión" },
+        { insight:"Aprendizaje 3", evidencia:"Cita / referencia", valor:"Aplicación actual / reflexión" },
+      ],
+
+      innovacion: {
+        desc: "Explica la propuesta: una memoria digital interactiva (objetivo, público, componentes, impacto).",
+        stats: [
+          { n: 120, label:"Respuestas" },
+          { n: 86, label:"Interés alto (%)" },
+          { n: 4.6, label:"Promedio (1–5)" },
+        ],
+        chart: {
+          labels:["Muy de acuerdo","De acuerdo","Neutral","En desacuerdo","Muy en desacuerdo"],
+          data:[38, 34, 16, 8, 4]
+        },
+        encuestaHtml: `
+          <p><strong>Encuesta:</strong> aquí puedes enlazar tu Google Form o formulario embebido.</p>
+          <p>Ejemplo: “Participa y aporta a la memoria colectiva”.</p>
+        `,
+        resultadosHtml: `
+          <p><strong>Resultados completos:</strong> pega aquí el resumen extendido, conclusiones y recomendaciones.</p>
+        `
+      },
+
+      quiz: {
+        preguntas: [
+          {
+            q: "¿Qué representa el apodo “El Grillo” dentro del contexto del legado?",
+            options: ["Opción A", "Opción B", "Opción C", "Opción D"],
+            correct: 1,
+            explain: "Explicación breve (basada en documento)."
+          },
+          {
+            q: "¿Cuál fue un elemento clave en la gesta heroica según la investigación?",
+            options: ["Opción A", "Opción B", "Opción C", "Opción D"],
+            correct: 2,
+            explain: "Explicación breve."
+          },
+          {
+            q: "¿Qué destaca el Decreto 1182 en términos de reconocimiento?",
+            options: ["Opción A", "Opción B", "Opción C", "Opción D"],
+            correct: 0,
+            explain: "Explicación breve."
+          },
+        ]
+      },
+
+      fuentes: [
+        { label:"Documento principal (biografía e investigación)", href:"#", note:"Reemplaza por link o ruta." },
+        { label:"Decreto 1182 (PDF / imagen)", href:"#", note:"Reemplaza por link o ruta." },
+        { label:"Notas / evidencias (PDF)", href:"#", note:"Reemplaza por link o ruta." },
+        { label:"Entrevistas / testimonios", href:"#", note:"Reemplaza por link o ruta." },
+      ]
+    };
+
+    /*********************************************************
+     * 2) NAV + SCROLLSPY
+     *********************************************************/
+    const navItems = [
+      { id:"inicio", label:"Inicio" },
+      { id:"contexto", label:"Contexto" },
+      { id:"vida", label:"Vida" },
+      { id:"gesta", label:"Gesta" },
+      { id:"legado", label:"Legado" },
+      { id:"imagenes", label:"Imágenes" },
+      { id:"testimonios", label:"Testimonios" },
+      { id:"innovacion", label:"Innovación" },
+      { id:"quiz", label:"Quiz" },
+      { id:"fuentes", label:"Fuentes" },
+    ];
+
+    const navLinks = document.getElementById("navLinks");
+    const drawerLinks = document.getElementById("drawerLinks");
+    const footerLinks = document.getElementById("footerLinks");
+
+    function renderNav(){
+      navLinks.innerHTML = navItems.map(i =>
+        `<a href="#${i.id}" data-id="${i.id}">${i.label}</a>`
+      ).join("");
+      drawerLinks.innerHTML = navItems.map(i =>
+        `<a href="#${i.id}" data-id="${i.id}">${i.label}</a>`
+      ).join("");
+      footerLinks.innerHTML = navItems.slice(0,6).map(i =>
+        `<a href="#${i.id}">${i.label}</a>`
+      ).join("");
+    }
+    renderNav();
+
+    function setActiveNav(id){
+      document.querySelectorAll('#navLinks a').forEach(a=>{
+        a.classList.toggle('active', a.dataset.id === id);
+      });
+    }
+
+    const sections = navItems.map(i => document.getElementById(i.id)).filter(Boolean);
+    const spy = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          setActiveNav(e.target.id);
+        }
+      });
+    }, {root:null, threshold:0.35});
+    sections.forEach(s => spy.observe(s));
+
+    /*********************************************************
+     * 3) MOBILE DRAWER
+     *********************************************************/
+    const drawer = document.getElementById("drawer");
+    const burger = document.getElementById("burger");
+    const drawerClose = document.getElementById("drawerClose");
+
+    function openDrawer(){
+      drawer.classList.add("open");
+      drawer.setAttribute("aria-hidden","false");
+    }
+    function closeDrawer(){
+      drawer.classList.remove("open");
+      drawer.setAttribute("aria-hidden","true");
+    }
+    burger.addEventListener("click", openDrawer);
+    drawerClose.addEventListener("click", closeDrawer);
+    drawer.addEventListener("click", (e)=>{
+      if(e.target === drawer) closeDrawer();
+    });
+    drawerLinks.addEventListener("click", (e)=>{
+      if(e.target.tagName === "A") closeDrawer();
+    });
+
+    /*********************************************************
+     * 4) REVEAL ANIMATIONS
+     *********************************************************/
+    const revObs = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting) e.target.classList.add("show");
+      });
+    }, {threshold: 0.18});
+    document.querySelectorAll("[data-reveal]").forEach(el => revObs.observe(el));
+
+    /*********************************************************
+     * 5) HERO TYPING
+     *********************************************************/
+    const typingTarget = document.getElementById("typingTarget");
+    const heroAlias = document.getElementById("heroAlias");
+    const heroImg = document.getElementById("heroImg");
+    heroAlias.textContent = content.hero.alias;
+    heroImg.src = content.hero.heroImg;
+
+    function typeText(text, speed=28){
+      typingTarget.textContent = "";
+      let i = 0;
+      const t = setInterval(()=>{
+        typingTarget.textContent += text[i] || "";
+        i++;
+        if(i >= text.length) clearInterval(t);
+      }, speed);
+    }
+    typeText(content.hero.nombre);
+
+    /*********************************************************
+     * 6) MODAL GLOBAL
+     *********************************************************/
+    const modal = document.getElementById("modal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalBody = document.getElementById("modalBody");
+    const modalClose = document.getElementById("modalClose");
+
+    function openModal(title, html){
+      modalTitle.textContent = title;
+      modalBody.innerHTML = html;
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden","false");
+      document.body.style.overflow = "hidden";
+    }
+    function closeModal(){
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden","true");
+      modalBody.innerHTML = "";
+      document.body.style.overflow = "";
+    }
+    modalClose.addEventListener("click", closeModal);
+    modal.addEventListener("click", (e)=>{ if(e.target === modal) closeModal(); });
+    document.addEventListener("keydown", (e)=>{ if(e.key === "Escape" && modal.classList.contains("open")) closeModal(); });
+
+    /*********************************************************
+     * 7) TIMELINE
+     *********************************************************/
+    const timelinePoints = document.getElementById("timelinePoints");
+    function renderTimeline(){
+      timelinePoints.innerHTML = content.timeline.map((t, idx)=>`
+        <div class="tpoint" role="button" tabindex="0" data-idx="${idx}" aria-label="Abrir ${t.year} ${t.title}">
+          <div class="year">${t.year}</div>
+          <div class="label">${t.title}</div>
+        </div>
+      `).join("");
+    }
+    renderTimeline();
+
+    function openTimeline(idx){
+      const t = content.timeline[idx];
+      openModal(`${t.year} — ${t.title}`, `
+        <p>${t.desc}</p>
+        <div class="callout"><strong>Fuente:</strong> <span class="muted">${t.source || "—"}</span></div>
+      `);
+    }
+    timelinePoints.addEventListener("click", (e)=>{
+      const p = e.target.closest(".tpoint");
+      if(!p) return;
+      openTimeline(Number(p.dataset.idx));
+    });
+    timelinePoints.addEventListener("keydown", (e)=>{
+      if(e.key !== "Enter") return;
+      const p = e.target.closest(".tpoint");
+      if(!p) return;
+      openTimeline(Number(p.dataset.idx));
+    });
+
+    // Pulse timeline when clicking "Explorar Legado"
+    document.getElementById("btnExplorar").addEventListener("click", ()=>{
+      const tl = document.getElementById("timeline");
+      tl.classList.add("show");
+      setTimeout(()=> tl.classList.remove("show"), 1200);
+      setTimeout(()=> tl.classList.add("show"), 1300);
+      setTimeout(()=> tl.classList.remove("show"), 2100);
+    });
+
+  /*********************************************************
+ * 8) VIDA ACCORDION + PARALLAX (VIDEO VERSION)
+ *********************************************************/
+const vidaAccordion = document.getElementById("vidaAccordion");
+const vidaVideo = document.getElementById("vidaVideo");
+const vidaCap = document.getElementById("vidaCap");
+
+/* Caption */
+vidaCap.textContent = content.vida.cap;
+
+/* Render Accordion */
+function renderVidaAccordion(){
+  vidaAccordion.innerHTML = content.vida.sections.map((s, i)=>`
+    <div class="accordion-item ${i===0 ? "acc-open":""}" data-k="${s.key}">
+      <button class="accordion-btn" type="button">
+        <span>${s.label}</span>
+        <span aria-hidden="true">${i===0 ? "−" : "+"}</span>
+      </button>
+      <div class="accordion-content">
+        <p>${s.text}</p>
+      </div>
+    </div>
+  `).join("");
+}
+
+renderVidaAccordion();
+
+/* Accordion click */
+vidaAccordion.addEventListener("click", (e)=>{
+  const btn = e.target.closest(".accordion-btn");
+  if(!btn) return;
+
+  const item = btn.parentElement;
+  const open = item.classList.contains("acc-open");
+
+  vidaAccordion.querySelectorAll(".accordion-item").forEach(it=>{
+    it.classList.remove("acc-open");
+    it.querySelector(".accordion-btn span:last-child").textContent = "+";
+  });
+
+  if(!open){
+    item.classList.add("acc-open");
+    item.querySelector(".accordion-btn span:last-child").textContent = "−";
+  }
+});
+
+/* Parallax para VIDEO */
+function parallax(){
+  const rect = vidaVideo.getBoundingClientRect();
+  const vh = window.innerHeight || 800;
+
+  const center = rect.top + rect.height/2;
+  const delta = (center - vh/2) / vh;
+
+  const y = Math.max(-18, Math.min(18, delta * 30));
+
+  vidaVideo.style.transform = `translateY(${y}px)`;
+}
+
+window.addEventListener("scroll", parallax, {passive:true});
+parallax();
+
+/* Botones */
+document.getElementById("btnBioCompleta").addEventListener("click", ()=>{
+  openModal("Biografía completa", content.vida.bioCompleta);
+});
+
+document.getElementById("btnVidaHighlight").addEventListener("click", ()=>{
+  const target = vidaAccordion.querySelector('[data-k="valores"]');
+  if(!target) return;
+
+  vidaAccordion.querySelectorAll(".accordion-item").forEach(it=>{
+    it.classList.remove("acc-open");
+    it.querySelector(".accordion-btn span:last-child").textContent = "+";
+  });
+
+  target.classList.add("acc-open");
+  target.querySelector(".accordion-btn span:last-child").textContent = "−";
+
+  target.scrollIntoView({behavior:"smooth", block:"center"});
+});
+
+    /*********************************************************
+     * 9) GESTA HEROICA
+     *********************************************************/
+    const gestaGrid = document.getElementById("gestaGrid");
+
+    function renderGesta(){
+      gestaGrid.innerHTML = content.gesta.map(g=>`
+        <div class="hcard" role="button" tabindex="0" data-id="${g.id}">
+          <div>
+            <div class="ico">${g.icon}</div>
+            <div class="title">${g.title}</div>
+            <div class="mini">${g.mini}</div>
+          </div>
+          <div class="link">Ver detalle <span aria-hidden="true">→</span></div>
+        </div>
+      `).join("");
+    }
+    renderGesta();
+
+    function openGesta(id){
+      const g = content.gesta.find(x=>x.id === id);
+      if(!g) return;
+      openModal(`${g.icon} ${g.title}`, `
+        ${g.detail}
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px">
+          <button type="button" class="btn primary" id="btnVerYear">Ver en línea de tiempo (${g.relatedYear})</button>
+          <button type="button" class="btn secondary" id="btnCerrarModal">Cerrar</button>
+        </div>
+      `);
+
+      // handlers dentro del modal
+      setTimeout(()=>{
+        const by = document.getElementById("btnVerYear");
+        const bc = document.getElementById("btnCerrarModal");
+        if(by){
+          by.addEventListener("click", ()=>{
+            closeModal();
+            document.getElementById("contexto").scrollIntoView({behavior:"smooth", block:"start"});
+            // abrir punto relacionado
+            const idx = content.timeline.findIndex(t=>t.year === g.relatedYear);
+            if(idx >= 0) setTimeout(()=> openTimeline(idx), 600);
+          });
+        }
+        if(bc) bc.addEventListener("click", closeModal);
+      }, 0);
+    }
+
+    gestaGrid.addEventListener("click", (e)=>{
+      const card = e.target.closest(".hcard");
+      if(!card) return;
+      openGesta(card.dataset.id);
+    });
+    gestaGrid.addEventListener("keydown", (e)=>{
+      if(e.key !== "Enter") return;
+      const card = e.target.closest(".hcard");
+      if(!card) return;
+      openGesta(card.dataset.id);
+    });
+
+    /*********************************************************
+     * 10) LEGADO (Decreto viewer + resumen)
+     *********************************************************/
+    const decretoVideo = document.getElementById("decretoVideo");
+    if(decretoVideo){
+      decretoVideo.src = content.legado.decretoImg;
+    }
+    document.getElementById("decretoResumen").textContent = content.legado.resumen;
+    document.getElementById("decretoCallout").textContent = content.legado.callout;
+
+    const decretoPuntos = document.getElementById("decretoPuntos");
+    decretoPuntos.innerHTML = content.legado.puntos.map(p=>`
+      <div class="item">• ${p}</div>
+    `).join("");
+
+    function openDecreto(){
+      openModal("Decreto 1182 — Visor", content.legado.decretoCompletoHtml);
+    }
+    document.getElementById("btnVerDecreto").addEventListener("click", openDecreto);
+    document.getElementById("decretoCard").addEventListener("click", openDecreto);
+    document.getElementById("decretoCard").addEventListener("keydown", (e)=>{
+      if(e.key === "Enter") openDecreto();
+    });
+    document.getElementById("btnIrFuentes").addEventListener("click", ()=>{
+      document.getElementById("fuentes").scrollIntoView({behavior:"smooth"});
+    });
+
+    /*********************************************************
+     * 11) IMÁGENES ANALIZADAS (ficha obligatoria)
+     *********************************************************/
+    const imagenesGrid = document.getElementById("imagenesGrid");
+
+    function renderImagenes(){
+  imagenesGrid.innerHTML = content.imagenes.map(img=>{
+    const isVideo = img.thumb.endsWith(".mp4");
+
+    return `
+      <div class="thumb" role="button" tabindex="0" data-id="${img.id}">
+        ${
+          isVideo
+            ? `<video src="${img.thumb}" autoplay muted loop playsinline preload="metadata"></video>`
+            : `<img src="${img.thumb}" alt="${img.title}" />`
+        }
+        <div class="overlay">
+          <div>
+            <div class="t">${img.title}</div>
+            <div style="font-size:13px; opacity:.9">Click para ver ficha</div>
+          </div>
+          <div class="b">Ver análisis</div>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+    renderImagenes();
+
+    function openImagen(id){
+  const im = content.imagenes.find(x=>x.id === id);
+  if(!im) return;
+
+  const mediaHtml = im.full.endsWith(".mp4")
+    ? `<video src="${im.full}" controls style="width:100%; border-radius:18px;"></video>`
+    : `<img src="${im.full}" alt="${im.title}" />`;
+
+  openModal(`Análisis — ${im.title}`, `
+    <div class="modal-media">
+      ${mediaHtml}
+    </div>
+
+    <h3 style="margin:14px 0 6px; color: var(--blue); font-size:16px; font-weight:950">Contexto</h3>
+    <p>${im.contexto}</p>
+
+    <h3 style="margin:12px 0 6px; color: var(--blue); font-size:16px; font-weight:950">Contenido simbólico</h3>
+    <p>${im.simbolico}</p>
+
+    <h3 style="margin:12px 0 6px; color: var(--blue); font-size:16px; font-weight:950">Relación con legado</h3>
+    <p>${im.relacion}</p>
+  `);
+}
+
+    imagenesGrid.addEventListener("click", (e)=>{
+      const t = e.target.closest(".thumb");
+      if(!t) return;
+      openImagen(t.dataset.id);
+    });
+    imagenesGrid.addEventListener("keydown", (e)=>{
+      if(e.key !== "Enter") return;
+      const t = e.target.closest(".thumb");
+      if(!t) return;
+      openImagen(t.dataset.id);
+    });
+
+    /*********************************************************
+     * 12) TESTIMONIOS (rotación) + TABLA
+     *********************************************************/
+    let qIdx = 0;
+    let auto = null;
+
+    const quoteText = document.getElementById("quoteText");
+    const quoteMeta = document.getElementById("quoteMeta");
+
+    function renderQuote(){
+      const q = content.testimonios[qIdx];
+      quoteText.textContent = q?.text || "";
+      quoteMeta.textContent = `${q?.by || ""}${q?.year ? " • " + q.year : ""}`;
+    }
+    renderQuote();
+
+    function nextQuote(){
+      qIdx = (qIdx + 1) % content.testimonios.length;
+      renderQuote();
+    }
+    function prevQuote(){
+      qIdx = (qIdx - 1 + content.testimonios.length) % content.testimonios.length;
+      renderQuote();
+    }
+
+    document.getElementById("qNext").addEventListener("click", nextQuote);
+    document.getElementById("qPrev").addEventListener("click", prevQuote);
+
+    const qAutoBtn = document.getElementById("qAuto");
+    qAutoBtn.addEventListener("click", ()=>{
+      if(auto){
+        clearInterval(auto);
+        auto = null;
+        qAutoBtn.textContent = "Auto: OFF";
+      }else{
+        auto = setInterval(nextQuote, 4500);
+        qAutoBtn.textContent = "Auto: ON";
+      }
+    });
+
+    document.getElementById("btnEntrevista").addEventListener("click", ()=>{
+      openModal("Entrevista completa", `
+        <p><strong>Entrevista completa (placeholder):</strong> incrusta video/audio o pega transcripción y fragmentos extendidos.</p>
+        <p>Tip pro: agrega marcador de tiempo y citas destacadas.</p>
+      `);
+    });
+
+    const aprendizajesBody = document.getElementById("aprendizajesBody");
+    aprendizajesBody.innerHTML = content.aprendizajes.map(a=>`
+      <tr>
+        <td><strong>${a.insight}</strong></td>
+        <td class="muted">${a.evidencia}</td>
+        <td class="muted">${a.valor}</td>
+      </tr>
+    `).join("");
+
+    /*********************************************************
+     * 13) INNOVACIÓN (stats + chart animado en viewport)
+     *********************************************************/
+    document.getElementById("innovDesc").textContent = content.innovacion.desc;
+
+    const innovStats = document.getElementById("innovStats");
+    innovStats.innerHTML = content.innovacion.stats.map(s=>`
+      <div class="stat">
+        <div class="n" data-count="${s.n}">0</div>
+        <div class="l">${s.label}</div>
+      </div>
+    `).join("");
+
+    // counter animation
+    function animateCount(el){
+      const target = Number(el.dataset.count);
+      const start = 0;
+      const steps = 40;
+      let i = 0;
+      const isFloat = String(target).includes(".");
+      const timer = setInterval(()=>{
+        i++;
+        const v = start + (target - start) * (i/steps);
+        el.textContent = isFloat ? v.toFixed(1) : Math.round(v);
+        if(i >= steps){ clearInterval(timer); el.textContent = target; }
+      }, 20);
+    }
+
+    // Chart lazy
+    let chartBuilt = false;
+    let chart = null;
+
+    function buildChart(){
+      if(chartBuilt) return;
+      chartBuilt = true;
+      const ctx = document.getElementById("chartEncuesta");
+      chart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: content.innovacion.chart.labels,
+          datasets: [{
+            label: "Respuestas",
+            data: content.innovacion.chart.data
+          }]
+        },
+        options: {
+          responsive: true,
+          animation: { duration: 900 },
+          plugins: {
+            legend: { display: false },
+            tooltip: { enabled: true }
+          },
+          scales: {
+            y: { beginAtZero: true }
+          }
+        }
+      });
+    }
+
+    const innovSection = document.getElementById("innovacion");
+    const innovObs = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          // counters
+          document.querySelectorAll("[data-count]").forEach(animateCount);
+          // chart
+          buildChart();
+          innovObs.disconnect();
+        }
+      });
+    }, {threshold: 0.28});
+    innovObs.observe(innovSection);
+
+    document.getElementById("btnParticipar").addEventListener("click", ()=>{
+      openModal("Participar / Encuesta", content.innovacion.encuestaHtml);
+    });
+    document.getElementById("btnVerResultados").addEventListener("click", ()=>{
+      openModal("Resultados completos", content.innovacion.resultadosHtml);
+    });
+
+    /*********************************************************
+     * 14) QUIZ (localStorage)
+     *********************************************************/
+    const quizProg = document.getElementById("quizProg");
+    const quizStep = document.getElementById("quizStep");
+    const quizQ = document.getElementById("quizQ");
+    const quizOpts = document.getElementById("quizOpts");
+    const quizFeedback = document.getElementById("quizFeedback");
+    const quizResult = document.getElementById("quizResult");
+
+    const LS_KEY = "legado_vivo_best_score";
+
+    let qi = 0;
+    let score = 0;
+    let answered = false;
+    let answers = new Array(content.quiz.preguntas.length).fill(null);
+
+    function renderQuiz(){
+      const total = content.quiz.preguntas.length;
+      const q = content.quiz.preguntas[qi];
+
+      quizStep.textContent = `Pregunta ${qi+1} de ${total}`;
+      quizQ.textContent = q.q;
+      quizProg.style.width = `${Math.round(((qi)/total)*100)}%`;
+      quizFeedback.textContent = "";
+      quizResult.style.display = "none";
+      answered = answers[qi] !== null;
+
+      quizOpts.innerHTML = q.options.map((opt, idx)=>`
+        <button class="opt" type="button" data-idx="${idx}">${opt}</button>
+      `).join("");
+
+      // si ya respondió, pintar estado
+      if(answered){
+        const chosen = answers[qi];
+        paintOptions(chosen, q.correct, q.explain);
+      }
+    }
+
+    function paintOptions(chosen, correct, explain){
+      quizOpts.querySelectorAll(".opt").forEach(btn=>{
+        const idx = Number(btn.dataset.idx);
+        btn.disabled = false;
+        if(idx === correct) btn.classList.add("correct");
+        if(idx === chosen && idx !== correct) btn.classList.add("wrong");
+      });
+      quizFeedback.textContent = explain || "";
+      answered = true;
+    }
+
+    quizOpts.addEventListener("click", (e)=>{
+  const b = e.target.closest(".opt");
+  if(!b) return;
+
+  const idx = Number(b.dataset.idx);
+  const q = content.quiz.preguntas[qi];
+
+  // guardar respuesta (aunque ya exista)
+  answers[qi] = idx;
+
+  // recalcular score total correctamente
+  recalcScore();
+
+  // mostrar feedback
+  paintOptions(idx, q.correct, q.explain);
+});
+
+    function recalcScore(){
+  score = 0;
+  content.quiz.preguntas.forEach((q, i)=>{
+    if(answers[i] === q.correct) score++;
+  });
+}
+
+    function finishQuiz(){
+      const total = content.quiz.preguntas.length;
+      quizProg.style.width = "100%";
+
+      const best = Number(localStorage.getItem(LS_KEY) || 0);
+      const newBest = Math.max(best, score);
+      localStorage.setItem(LS_KEY, String(newBest));
+
+      quizResult.style.display = "block";
+      quizResult.innerHTML = `
+        <strong>Resultado:</strong> ${score} / ${total}<br/>
+        <span class="muted">Mejor puntaje guardado: ${newBest} / ${total}</span><br/><br/>
+        <button type="button" class="btn primary" id="btnShare">Compartir resultado</button>
+      `;
+
+      setTimeout(()=>{
+        const sBtn = document.getElementById("btnShare");
+        if(sBtn){
+          sBtn.addEventListener("click", async ()=>{
+            const text = `Obtuve ${score}/${total} en el Quiz de “Legado Vivo: Luis Alfonso Velásquez Flores”.`;
+            try{
+              await navigator.clipboard.writeText(text);
+              openModal("Compartir", `<p>Copiado al portapapeles:</p><p><strong>${text}</strong></p>`);
+            }catch{
+              openModal("Compartir", `<p>Copia manual:</p><p><strong>${text}</strong></p>`);
+            }
+          });
+        }
+      }, 0);
+    }
+
+    document.getElementById("quizNext").addEventListener("click", ()=>{
+      const total = content.quiz.preguntas.length;
+      if(qi < total - 1){
+        qi++;
+        renderQuiz();
+      }else{
+        finishQuiz();
+      }
+    });
+
+    document.getElementById("quizPrev").addEventListener("click", ()=>{
+      if(qi > 0){
+        qi--;
+        renderQuiz();
+      }
+    });
+
+    document.getElementById("quizRetry").addEventListener("click", ()=>{
+      qi = 0; score = 0;
+      answers = new Array(content.quiz.preguntas.length).fill(null);
+      renderQuiz();
+    });
+
+    renderQuiz();
+
+    /*********************************************************
+     * 15) FUENTES
+     *********************************************************/
+    const fuentesList = document.getElementById("fuentesList");
+    fuentesList.innerHTML = content.fuentes.map(f=>`
+      <div class="card pad" style="margin-bottom:10px">
+        <div style="font-weight:950; color: var(--blue)">${f.label}</div>
+        <div class="muted" style="margin-top:6px; line-height:1.6">${f.note || ""}</div>
+        <div style="margin-top:10px">
+          <a class="btn secondary" href="${f.href}" target="_blank" rel="noopener">Abrir</a>
+        </div>
+      </div>
+    `).join("");
+
+    /*********************************************************
+     * 16) TOUR / EXPERIENCIA INTERACTIVA (modo guiado)
+     *********************************************************/
+    function startTour(){
+      openModal("Experiencia Interactiva (Tour)", `
+        <p>Modo guiado en 3 pasos (puedes ampliarlo a 5+):</p>
+        <ol class="muted" style="line-height:1.7">
+          <li><strong>Contexto:</strong> Explorar la línea de tiempo (abre un punto clave).</li>
+          <li><strong>Gesta:</strong> Abrir una card y revisar el detalle.</li>
+          <li><strong>Quiz:</strong> Responder preguntas y guardar puntaje.</li>
+        </ol>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px">
+          <button class="btn primary" id="tourGo1">Ir a Contexto</button>
+          <button class="btn secondary" id="tourGo2">Ir a Gesta</button>
+          <button class="btn secondary" id="tourGo3">Ir a Quiz</button>
+        </div>
+      `);
+
+      setTimeout(()=>{
+        const go1 = document.getElementById("tourGo1");
+        const go2 = document.getElementById("tourGo2");
+        const go3 = document.getElementById("tourGo3");
+        if(go1) go1.addEventListener("click", ()=>{ closeModal(); document.getElementById("contexto").scrollIntoView({behavior:"smooth"}); });
+        if(go2) go2.addEventListener("click", ()=>{ closeModal(); document.getElementById("gesta").scrollIntoView({behavior:"smooth"}); });
+        if(go3) go3.addEventListener("click", ()=>{ closeModal(); document.getElementById("quiz").scrollIntoView({behavior:"smooth"}); });
+      }, 0);
+    }
+
+    document.getElementById("btnTourTop").addEventListener("click", startTour);
+    document.getElementById("btnTour").addEventListener("click", startTour);
+    document.getElementById("drawerTour").addEventListener("click", ()=>{ closeDrawer(); startTour(); });
+
+    /*********************************************************
+     * 17) BACK TO TOP
+     *********************************************************/
+    const toTop = document.getElementById("toTop");
+    window.addEventListener("scroll", ()=>{
+      const y = window.scrollY || 0;
+      toTop.classList.toggle("show", y > 700);
+    }, {passive:true});
+    toTop.addEventListener("click", ()=> window.scrollTo({top:0, behavior:"smooth"}));
+
+    /*********************************************************
+     * 18) Timeline line animation trigger
+     *********************************************************/
+    const tl = document.getElementById("timeline");
+    const tlObs = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          tl.classList.add("show");
+          tlObs.disconnect();
+        }
+      });
+    }, {threshold:0.25});
+    tlObs.observe(tl);
+  </script>
+</body>
+</html>
